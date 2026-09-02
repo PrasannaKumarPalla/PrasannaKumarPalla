@@ -111,16 +111,13 @@ rack to the control plane.
 
 ## &nbsp;📊&nbsp; GitHub Analytics
 
-<!-- summary cards — vn7n24fzkq/github-profile-summary-cards, published by the `summary cards`
-     workflow to  output/github_dark/ . Includes private + org contributions via PROFILE_TOKEN.
-     (0-profile-details is skipped — its email row overlaps the mini chart for long addresses.) -->
+<!-- summary cards — vn7n24fzkq/github-profile-summary-cards -> output/github_dark/ .
+     Only the 3 cards that don't query the `email` field: PROFILE_TOKEN has repo+read:org but
+     not read:user, so 0-profile-details and 3-stats fail. Add read:user to that PAT to use them. -->
 <p align="center">
-  <img width="42%" src="https://raw.githubusercontent.com/PrasannaKumarPalla/PrasannaKumarPalla/output/github_dark/3-stats.svg" alt="github stats" />
-  <img width="42%" src="https://raw.githubusercontent.com/PrasannaKumarPalla/PrasannaKumarPalla/output/github_dark/2-most-commit-language.svg" alt="languages by commits" />
-</p>
-<p align="center">
-  <img width="42%" src="https://raw.githubusercontent.com/PrasannaKumarPalla/PrasannaKumarPalla/output/github_dark/1-repos-per-language.svg" alt="repos per language" />
-  <img width="42%" src="https://raw.githubusercontent.com/PrasannaKumarPalla/PrasannaKumarPalla/output/github_dark/4-productive-time.svg" alt="productive time" />
+  <img width="32%" src="https://raw.githubusercontent.com/PrasannaKumarPalla/PrasannaKumarPalla/output/github_dark/2-most-commit-language.svg" alt="languages by commits" />
+  <img width="32%" src="https://raw.githubusercontent.com/PrasannaKumarPalla/PrasannaKumarPalla/output/github_dark/1-repos-per-language.svg" alt="repos per language" />
+  <img width="32%" src="https://raw.githubusercontent.com/PrasannaKumarPalla/PrasannaKumarPalla/output/github_dark/4-productive-time.svg" alt="productive time" />
 </p>
 
 <!-- contribution game — Space Shooter GIF, committed by the `contribution game` workflow -->
