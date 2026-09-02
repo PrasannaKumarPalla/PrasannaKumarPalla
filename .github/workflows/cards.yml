@@ -1,0 +1,47 @@
+name: summary cards
+
+# vn7n24fzkq/github-profile-summary-cards (3.6k+ stars). It always renders every
+# theme; we publish only github_dark/ to the `output` branch (replacing it, so the
+# branch stays small). PROFILE_TOKEN (classic PAT: repo, read:org, read:user)
+# gives private + org data; falls back to the workflow token (public only).
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cards
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: vn7n24fzkq/github-profile-summary-cards@release
+        env:
+          GITHUB_TOKEN: ${{ secrets.PROFILE_TOKEN || github.token }}
+        with:
+          USERNAME: ${{ github.repository_owner }}
+          UTC_OFFSET: 5
+          AUTO_PUSH: false
+
+      - name: keep only github_dark
+        run: |
+          mkdir -p publish/github_dark
+          cp -f profile-summary-card-output/github_dark/*.svg publish/github_dark/
+
+      - name: publish to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

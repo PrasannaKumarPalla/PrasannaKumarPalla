@@ -1,0 +1,34 @@
+name: contribution game
+
+# Space Shooter — turns the contribution graph into an animated arcade GIF.
+# czl9707/gh-space-shooter. Commits game.gif to the repo (amends daily so history
+# doesn't bloat). Swap to Platane/snk (snake) or abozanona (pac-man) if preferred.
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: game
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: czl9707/gh-space-shooter@v2
+        with:
+          github-token: ${{ secrets.PROFILE_TOKEN || github.token }}
+          output-path: assets/game.gif
+          strategy: random
+          fps: "40"
